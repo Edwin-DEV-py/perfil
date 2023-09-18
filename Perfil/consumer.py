@@ -5,10 +5,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Cart.settings')
 django.setup()
 
 import pika, json
-from AppPerfil.models import Profile
+from AppPerfil.models import Profile,UserInventory
 
 #conectar con cloudAMQP
-params = pika.URLParameters('amqps://rlvgzuul:IR8L9U8f_vzjLAF0P4gtt9ALoMC4Q8W7@jaragua.lmq.cloudamqp.com/rlvgzuul')
+params = pika.URLParameters('amqps://egbtzacu:8IDS1AD2mhUAsfiZ4RyvNcuivPUeNc69@jaragua.lmq.cloudamqp.com/egbtzacu')
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 print('conectado')
@@ -26,8 +26,7 @@ def callback(ch, method,properties, body):
     if properties.content_type == 'crear_perfil':
         username = data['user']
         Profile.objects.create(user=username)
-        print(f'Perfil creado para el usuario: {username}')
-        
+        print(f'Perfil creado para el usuario: {username}')    
         
 channel.basic_consume(queue='perfil', on_message_callback=callback, auto_ack=True)
 

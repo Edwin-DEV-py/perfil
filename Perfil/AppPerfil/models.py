@@ -9,4 +9,5 @@ class Profile(models.Model):
 class UserInventory(models.Model):
     user = models.CharField(max_length=100)
     id_carta = models.CharField(max_length=24)
+    quantity = models.IntegerField(default=0)
     
