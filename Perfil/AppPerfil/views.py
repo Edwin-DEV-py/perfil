@@ -3,6 +3,7 @@ from .models import Profile, UserInventory
 from .serializers import ProfileSerializer,UserInventorySerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+import requests
 
 class ProfileView(APIView):
     def get(self,request,user):

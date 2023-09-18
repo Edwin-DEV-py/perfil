@@ -10,7 +10,7 @@ import pika, json
 from AppPerfil.models import UserInventory
 
 #conectar con cloudAMQP
-params = pika.URLParameters('amqps://augowwbq:8t-grsKLXggpPsDjMb-YH9sLf7bBTzRm@jaragua.lmq.cloudamqp.com/augowwbq')
+params = pika.URLParameters('amqps://fjonsldu:WYViCxnki3fHD6oBcv8tIO3iAZ8T24Yq@jackal.rmq.cloudamqp.com/fjonsldu')
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 print('conectado2')
@@ -54,5 +54,3 @@ print('consumiendo')
 
 
 channel.start_consuming()
-
-channel.close()
