@@ -38,12 +38,20 @@ def callback(ch, method,properties, body):
             with transaction.atomic():
                 for item in items:
                     id_carta = item.get('id_carta')
+                    
                     try:
                         card = UserInventory.objects.get(user=username,id_carta=id_carta)
                         card.quantity +=1
                         card.save()
                     except UserInventory.DoesNotExist:
-                        UserInventory.objects.create(user=username,id_carta=id_carta)
+                        response = requests.get('https://cards.thenexusbattles2.cloud/api/all/')
+                        data = response.json()
+                        #iterar por el json
+                        for carta in data:
+                            #comparar el id del json con el id que pasamos
+                            if carta.get('_id') == id_carta:
+                                coleccion = carta.get('coleccion')
+                        UserInventory.objects.create(user=username,id_carta=id_carta,type=coleccion)
                         print('Carta guardada')
         print('Se anadieron todas las cartas al perfil')
         
