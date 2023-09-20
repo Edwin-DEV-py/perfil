@@ -29,7 +29,7 @@ def callback(ch, method,properties, body):
         username = data['user']
         order_id = data['order_id']
         
-        api_url = f'http://127.0.0.1:8003/api/order/{order_id}/'
+        api_url = f'https://store.thenexusbattles2.cloud/pagos-api/api/order/{order_id}/'
         response = requests.get(api_url)
         
         if response.status_code == 200:
