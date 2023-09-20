@@ -16,3 +16,9 @@ class UserInventoryView(APIView):
         profile = UserInventory.objects.filter(user=user)
         serializer = UserInventorySerializer(profile,many=True)
         return Response(serializer.data)
+    
+class InventoryView(APIView):
+    def get(self,request,user):
+        profile = UserInventory.objects.filter(user=user)
+        serializer = UserInventorySerializer(profile,many=True)
+        return Response(serializer.data)
