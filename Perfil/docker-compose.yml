@@ -9,3 +9,11 @@ services:
       - 8004:8004
     volumes:
       - .:/app
+  
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python consumer2.py'
+
+
