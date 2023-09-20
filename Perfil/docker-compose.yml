@@ -15,5 +15,10 @@ services:
       context: .
       dockerfile: Dockerfile
     command: 'python consumer2.py'
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
 
 
