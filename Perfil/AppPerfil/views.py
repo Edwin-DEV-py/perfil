@@ -14,10 +14,20 @@ class ProfileView(APIView):
 
     def post(self,request,user):
         game = request.data.get('games')
+        subscription = request.data.get('sub')
+        
         profile = Profile.objects.get(user=user)
-        profile.games += game
-        profile.save()
-        return Response({'Ok:':'Partidas agregadas'})
+        
+        if subscription:
+                if not profile.is_active_sub():
+                    profile.activate_sub()
+                    return Response({'Ok:':'Suscripcion activada exitosamente.'})
+                else:
+                    return Response({'Error:':'Ya tienes una suscripcion.'})
+        else:
+            profile.games += game
+            profile.save()
+            return Response({'Ok:':'Partidas agregadas'})
     
 class UserInventoryView(APIView):
     def get(self,request,user):
