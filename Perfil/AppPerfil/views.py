@@ -29,8 +29,8 @@ class AddInventary(APIView):
         username = request.data.get('user')
         order_id = request.data.get('order_id')
         
-        #api_url = f'https://store.thenexusbattles2.cloud/webserver/obtener-orden/{order_id}'
-        api_url = f'http://localhost:3000/obtener-orden/{order_id}'
+        api_url = f'https://store.thenexusbattles2.cloud/webserver/obtener-orden/{order_id}'
+        #api_url = f'http://localhost:3000/obtener-orden/{order_id}'
         response = requests.get(api_url)
         
         if response.status_code == 200:
