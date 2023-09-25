@@ -11,6 +11,13 @@ class ProfileView(APIView):
         profile = Profile.objects.get(user=user)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
+
+    def post(self,request,user):
+        game = request.data.get('games')
+        profile = Profile.objects.get(user=user)
+        profile.games += game
+        profile.save()
+        return Response({'Ok:':'Partidas agregadas'})
     
 class UserInventoryView(APIView):
     def get(self,request,user):
