@@ -6,6 +6,17 @@ from rest_framework.response import Response
 import requests
 from django.db import transaction
 
+class CreateProfile(APIView):
+    def post(self,request):
+        user = request.data.get('user')
+        
+        try:
+            profile = Profile.objects.create(user=user)
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data)
+        except:
+            return Response({'Error:':'Ya existe una cuenat asociada a este perfil'})
+
 class ProfileView(APIView):
     def get(self,request,user):
         profile = Profile.objects.get(user=user)

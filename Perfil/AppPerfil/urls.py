@@ -6,4 +6,5 @@ urlpatterns = [
     path('inventario/<str:user>/', UserInventoryView.as_view(), name="inventario"),
     path('agg_inventario/', AddInventary.as_view(), name="AGGinventario"),
     path('inventario2/<str:user>/', InventoryView.as_view(), name="inventario2"),
+    path('crearPerfil/', CreateProfile.as_view(),name='crearPerfil')
 ]
