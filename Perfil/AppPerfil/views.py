@@ -73,7 +73,7 @@ class AddInventary(APIView):
                         card.quantity +=1
                         card.save()
                     except UserInventory.DoesNotExist:
-                        response = requests.get('https://cards.thenexusbattles2.cloud/api/all/')
+                        response = requests.get('https://cards.thenexusbattles2.cloud/api/cartas/?size=50&page=1&coleccion=All&onlyActives=true')
                         data = response.json()
                         #iterar por el json
                         for carta in data:
